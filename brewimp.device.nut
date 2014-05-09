@@ -185,13 +185,6 @@ function strikeoff() {
 //Begin executing program
 hardware.pin8.write(1); //Set the Chip Select pin to HIGH prior to SPI read
 readMash189();          //Read SPI data
-
-if (farenheit < 162)
-	{mashon();
-	}
-else if (farenheit > 162)
-	{mashoff();
-	}
 hardware.pinD.write(1); //Set the Chip Select pin to HIGH prior to SPI read
 readStrike189();          //Read SPI data
 
