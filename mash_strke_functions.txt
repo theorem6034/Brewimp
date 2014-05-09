@@ -1,0 +1,56 @@
+// assign mash and strike pins to a global variable
+mash <- hardware.pinB;
+strike <- hardware.pinC;
+// configure LED pin for DIGITAL_OUTPUT
+mash.configure(DIGITAL_OUT);
+strike.configure(DIGITAL_OUT);
+
+// global variable to track current state of LED pin
+state <- 1;
+// set Relay pin to initial value (0 = off, 1 = on)
+mash.write(state);
+strike.write(state);
+
+// function to turn on Mash
+function mashon() {
+  // flip the state variable
+  if (state == 1) {
+    state = 0;
+  }
+  mash.write(state);         // turn on mash heat
+  imp.wakeup(0.1, mashon);
+}
+
+// function to turn off Mash
+function mashoff() {
+  // flip the state variable
+  if (state == 0) {
+    state = 1;
+  }
+  mash.write(state);         // turn on mash heat
+  imp.wakeup(0.1, mashoff);
+}
+
+// function to turn on Strike
+function strikeon() {
+  // flip the state variable
+  if (state == 1) {
+    state = 0;
+  }
+  strike.write(state);         // turn on mash heat
+  imp.wakeup(0.1, strikeon);
+}
+
+// function to turn off Strike
+function strikeoff() {
+  // flip the state variable
+  if (state == 0) {
+    state = 1;
+  }
+  strike.write(state);         // turn on mash heat
+  imp.wakeup(0.1, strikeoff);
+}
+
+mashon(); //turn mash on
+strikeon(); //turn mash on
+

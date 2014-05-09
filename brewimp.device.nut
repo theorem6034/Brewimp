@@ -191,5 +191,8 @@ hardware.pin8.write(1); //Set the Chip Select pin to HIGH prior to SPI read
 readMash189();          //Read SPI data
 hardware.pinD.write(1); //Set the Chip Select pin to HIGH prior to SPI read
 readStrike189();          //Read SPI data
+
 mashon(); //turn mash on
 strikeon(); //turn mash on
+
+if 
