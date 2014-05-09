@@ -75,9 +75,9 @@ function readMash189(){
         // Convert to Celcius
 		    celcius = (1.0* tc/4.0);
         // Convert to Farenheit
-        mash.farenheit = (((celcius*9)/5)+32);
+        farenheit = (((celcius*9)/5)+32);
         server.log(celcius + "°C");
-        server.log(mash.farenheit + "°F");
+        server.log(farenheit + "°F");
         //agent.send("Xively", farenheit);
 	}
 }
@@ -137,9 +137,9 @@ function readStrike189(){
         // Convert to Celcius
 		    celcius = (1.0* tc/4.0);
         // Convert to Farenheit
-        strike.farenheit = (((celcius*9)/5)+32);
+        farenheit = (((celcius*9)/5)+32);
         server.log(celcius + "°C");
-        server.log(strike.farenheit + "°F");
+        server.log(farenheit + "°F");
         //agent.send("Xively", farenheit);
         imp.wakeup(10, readStrike189); //Wakeup every 10 second and read data.
 	}
@@ -161,7 +161,7 @@ function mashoff() {
   if (state == 0) {
     state = 1;
   }
-  mash.write(state);         // turn off mash heat
+  mash.write(state);         // turn on mash heat
 }
 
 // function to turn on Strike
@@ -179,27 +179,22 @@ function strikeoff() {
   if (state == 0) {
     state = 1;
   }
-  strike.write(state);         // turn off strike heat
+  strike.write(state);         // turn on mash heat
 }
 
 //Begin executing program
 hardware.pin8.write(1); //Set the Chip Select pin to HIGH prior to SPI read
 readMash189();          //Read SPI data
 
-if (mash.farenheit < 162)
+if (farenheit < 162)
 	{mashon();
 	}
-else if (mash.farenheit > 162)
+else if (farenheit > 162)
 	{mashoff();
 	}
 hardware.pinD.write(1); //Set the Chip Select pin to HIGH prior to SPI read
 readStrike189();          //Read SPI data
-if (strike.farenheit < 168)
-	{strikeon();
-	}
-else if (strike.farenheit > 168)
-	{strikeoff();
-	}
+
 mashon(); //turn mash on
 strikeon(); //turn mash on
 
