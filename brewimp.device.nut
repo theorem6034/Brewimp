@@ -79,7 +79,6 @@ function readMash189(){
         server.log(celcius + "°C");
         server.log(farenheit + "°F");
         //agent.send("Xively", farenheit);
-        imp.wakeup(10, readMash189); //Wakeup every 10 second and read data.
 	}
 }
 
@@ -153,7 +152,7 @@ function mashon() {
     state = 0;
   }
   mash.write(state);         // turn on mash heat
-  imp.wakeup(0.1, mashon);
+  // imp.wakeup(0.1, mashon);
 }
 
 // function to turn off Mash
@@ -163,7 +162,6 @@ function mashoff() {
     state = 1;
   }
   mash.write(state);         // turn on mash heat
-  imp.wakeup(0.1, mashoff);
 }
 
 // function to turn on Strike
@@ -173,7 +171,6 @@ function strikeon() {
     state = 0;
   }
   strike.write(state);         // turn on mash heat
-  imp.wakeup(0.1, strikeon);
 }
 
 // function to turn off Strike
@@ -183,7 +180,6 @@ function strikeoff() {
     state = 1;
   }
   strike.write(state);         // turn on mash heat
-  imp.wakeup(0.1, strikeoff);
 }
 
 //Begin executing program
@@ -195,4 +191,5 @@ readStrike189();          //Read SPI data
 mashon(); //turn mash on
 strikeon(); //turn mash on
 
-if 
+imp.wakeup(5, mashoff);
+imp.wakeup(15, strikeoff);
